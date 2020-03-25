@@ -1,0 +1,420 @@
+ul{list-style:none;}
+
+*{
+	padding: 0px;
+	margin: 0px;
+}
+
+body{
+	/* font: 14px, line-height: 1.9px */
+	font-family: 'Noto Sans JP', Arial, Verdana, YuGothic, '微軟正黑體';
+	font-size: 14px;
+	line-height: 1.9;
+	font-weight: 300px;
+	-webkit-text-size-adjust: 100%; /* for Safari and Chrome */
+	overflow-x: hidden;
+	color: #000;
+	background: #fff;
+}
+
+a{
+	color: #0066ff;
+	text-decoration: none;
+}
+
+a:hover, .active{
+	text-decoration: underline;
+}
+
+a:active, a:focus, input:active, input:focus{outline: 0;}
+
+
+#mainNav a{
+	color: #000;
+	font-family: 'Modern Antiqua',serif;
+}
+
+.top-word{
+	color: #000;
+	text-align: center;
+	vertical-align: center;
+	font-family: 'ＭＳ Ｐ明朝, MS PMincho,ヒラギノ明朝 Pro W3, Hiragino Mincho Pro', serif;
+	font-size: 1.2em; /* font-size: +2; */ 
+}
+
+
+
+/* ---------------------------------------------------- */
+h1, h2{
+	font-family: 'Modern Antiqua',serif;
+}
+
+img{
+	max-width: 100%;
+	height: auto;
+}
+
+section{
+	/* clear float: left 與 float: right 的浮動元素 */
+	clear: both;
+}
+
+
+section h2{
+	width: 60%;
+	margin: 40px auto 30px auto;
+
+	font-size: 22px;
+	font-weight: normal;
+	text-align: center;
+}
+
+section h2 span{
+	padding-bottom: 10px;
+	border-bottom: 3px solid #000;
+}
+
+.innerS{
+	width: 60%;
+	margin: 0 auto;
+	padding-bottom: 80px;
+}
+
+hr{
+    height: 12px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(0,0,0,0.5);
+}
+
+.tech{
+	display: flex;
+	flex-direction: row;
+}
+
+.tech-img{
+	width: 50%;
+	padding: 10px;
+}
+
+.tech-img img{
+	width: 100%;
+}
+
+.tech-word{
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/*border: 1px solid #a00;*/
+}
+
+.tech-word .tech-btn{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-self: flex-start;
+	border-bottom: 1px solid #aaa;
+}
+
+.tech-word .tech-btn a{
+	font-size: 1.5em;
+	margin-right: 15px;
+	color: #000;
+	text-decoration: none;
+}
+
+.tech-word .tech-btn a:hover{
+	text-decoration: none;
+}
+
+.tech-word .tech-btn a:focus{
+	text-decoration: underline;
+}
+
+.tech-word .txt{
+	display: flex;
+	flex-direction: row;
+	align-self: flex-start;
+	margin-top: 10px;
+	font-size: 1.2em;
+}
+
+
+/* CSS3's media queries(to adjust the screen's width accroding to device.)
+	1. media type: 
+	2. media feature:
+*/
+@media only screen and (min-width: 800px){
+
+	body{
+		font-size: 14px;
+	}
+
+	#wrapper{
+		width: 100%;
+	}
+
+	#content{
+		width: 80%;
+	}
+
+	#sidebar{
+		width: 12%;
+		position: fixed;
+		top: 0;
+		right: 4%;
+		background: #fff;
+	}
+
+	a#menu{
+		display: none;
+	}
+
+	.panel{
+		/* Open Webkit's adjust text function*/
+		display: block !important;
+	}
+
+	#sidebar h1{
+		padding: 30px 0;
+	}
+
+	#mainNav li{
+		font-size: 14px;
+		padding: 10px 0;
+	}
+
+	#sns{
+		margin-top: 50px;
+	}
+
+	#sns li{
+		display: inline-block;
+		padding-right: 10px;
+	}
+
+	#sns a:hover img{
+		opacity: .8;
+	}
+	
+}
+
+/* Medium screens - TABLET */
+@media only screen and (min-width: 641px){
+
+}
+
+
+/* Small screens - MOBILE */
+/* max-width 640px, mobile-only styles, use when QAing mobile issues */
+
+@media only screen and (max-width: 640px){
+	.tech{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.tech-img{
+		width: 100%;
+		padding: 10px;
+	}
+
+	.tech-img img{
+		width: 100%;
+	}
+
+	.tech-word{
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		/*border: 1px solid #a00;*/
+	}
+
+	.tech-word .tech-btn{
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		border-bottom: 1px solid #aaa;
+	}
+
+	.tech-word .tech-btn a{
+		font-size: 1.6em;
+		margin-right: 15px;
+		color: #000;
+		text-decoration: none;
+	}
+
+	.tech-word .tech-btn a:hover{
+		text-decoration: none;
+	}
+
+	.tech-word .tech-btn a:focus{
+		text-decoration: underline;
+	}
+
+	.tech-word .txt{
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.tech-word .txt p{
+		text-align: center;
+		font-size: 1.1em;
+	}
+
+}
+
+@media only screen and (max-width: 799px){
+	#sidebar{
+		/* sidebar will be in the top of page. */
+		position: fixed;
+		width: 100%; 
+		z-index: 500;
+	}
+	
+	#sidebarWrap{
+		position: relative;
+		width: 100%;
+		height: 60px;
+		background: #fff;
+		border-bottom: 1px solid #ccc;
+	}
+	
+	#sidebar h1{
+		text-align: center;
+		padding-top: 15px;
+	}
+	
+	#sidebar h1 img{
+		width: auto !important;
+		max-height: 25px;
+	}
+	
+  	a#menu{
+  		display: inline-block;
+  		position: relative;
+  		width: 40px;
+  		height: 40px;
+  		margin: 10px;
+	}
+
+	#menuBtn{
+	  	display: block;
+	  	position: absolute;
+	  	top: 50%;
+	  	left: 50%;
+	  	width: 18px;
+	  	height: 2px;
+	  	margin: -1px 0 0 -7px;
+	  	background: #000;
+	  	transition: .2s;
+	}
+
+	#menuBtn:before, #menuBtn:after{
+	  	display: block;
+	  	content: "";
+	  	position: absolute;
+	  	top: 50%;
+	  	left: 0;
+	  	width: 18px;
+	  	height: 2px;
+	  	background: #000;
+	  	transition: .3s;
+	}
+
+	#menuBtn:before{
+  		margin-top: -7px;
+	}
+
+	#menuBtn:after{
+  		margin-top: 5px;
+	}
+	
+	a#menu .close{
+  		background: transparent;
+	}
+
+	a#menu .close:before, a#menu .close:after{
+  		margin-top: 0;
+	}
+
+	a#menu .close:before{
+	  	transform: rotate(-45deg);
+	  	-webkit-transform: rotate(-45deg);
+	}
+
+	a#menu .close:after{
+	  	transform: rotate(-135deg);
+	  	-webkit-transform: rotate(-135deg);
+	}
+
+	.panel{
+		width: 100%;
+		display: none;
+		overflow: hidden;
+		position: relative;
+		left: 0;
+		top: -10px;
+		z-index: 100;
+	}
+
+	#mainNav{
+		position: absolute;
+		top: 0;
+		width: 100%;
+		text-align: right;
+	}
+
+	#mainNav ul{
+		border-bottom: 1px solid #ccc;
+		background: #fff;
+		text-align: left;
+	}
+
+	#mainNav li a{
+		position: relative;
+		display: block;
+		padding: 15px 25px;
+		border-bottom: 1px solid #ccc;
+		color: #000;
+		font-weight: 400;
+	}
+
+	#mainNav li a:before{
+		display: block;
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 5px;
+		width: 6px;
+		height: 6px;
+		margin: -4px 0 0 0;
+		border-top: solid 2px #000;
+		border-right: solid 2px #000;
+		-webkit-transform: rotate(45deg);
+		transform: rotate(45deg);
+	}
+
+	#mainNav #sns li{
+		display: inline-block;
+	}
+
+	#mainNav #sns li a{
+		position: relative;
+		display: inline-block;
+		padding: 15px 10px 0;
+		border: 0;
+	}
+
+	#mainNav #sns li a:before{
+		border: 0;
+	}
+
+
+
+
+}
