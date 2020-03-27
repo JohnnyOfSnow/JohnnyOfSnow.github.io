@@ -1,5 +1,7 @@
 ul{list-style:none;}
 
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,500,700&display=swap");
+
 *{
 	padding: 0px;
 	margin: 0px;
@@ -7,7 +9,7 @@ ul{list-style:none;}
 
 body{
 	/* font: 14px, line-height: 1.9px */
-	font-family: 'Noto Sans JP', Arial, Verdana, YuGothic, '微軟正黑體';
+	font-family: 'Noto Sans TC', sans-serif;
 	font-size: 14px;
 	line-height: 1.9;
 	font-weight: 300px;
@@ -31,14 +33,14 @@ a:active, a:focus, input:active, input:focus{outline: 0;}
 
 #mainNav a{
 	color: #000;
-	font-family: 'Modern Antiqua',serif;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 
 .top-word{
 	color: #000;
 	text-align: center;
 	vertical-align: center;
-	font-family: 'ＭＳ Ｐ明朝, MS PMincho,ヒラギノ明朝 Pro W3, Hiragino Mincho Pro', serif;
+	font-family: 'Noto Sans TC', sans-serif;
 	font-size: 1.2em; /* font-size: +2; */ 
 }
 
@@ -46,7 +48,7 @@ a:active, a:focus, input:active, input:focus{outline: 0;}
 
 /* ---------------------------------------------------- */
 h1, h2{
-	font-family: 'Modern Antiqua',serif;
+	font-family: 'Noto Sans TC', sans-serif;
 }
 
 img{
@@ -117,7 +119,7 @@ hr{
 }
 
 .tech-word .tech-btn a{
-	font-size: 1.5em;
+	font-size: 1.4em;
 	margin-right: 15px;
 	color: #000;
 	text-decoration: none;
@@ -138,6 +140,86 @@ hr{
 	margin-top: 10px;
 	font-size: 1.2em;
 }
+
+/* creation image
+------------------------------------------------------------*/
+#creation{
+	padding: 0 !important;
+}
+
+.creationImage{
+	width: 100%;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.creationImage .item{
+	width: calc(100%/2.5);
+	margin: 0 5px;
+	display: flex;
+	flex-direction: column;
+	background-color: rgb(255,255,255,.6);
+
+	/*box-shadow: offset-x offset-y blur-radius color;*/
+	box-shadow: 0 5px 15px rgba(30,0,0,.5);
+	margin-top: 15px;
+	margin-bottom: 15px;
+	position: relative;
+}
+
+.item .pic{
+	width: 100%;
+
+}
+.item .pic img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.item .txt{
+	width: 100%;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+}
+
+.item .txt h2{
+	width: 80%;
+	font-size: 16px;
+	text-align: center;
+	margin-top: 5px;
+	font-weight: 700;
+	margin-bottom: .4em;
+}
+.item .txt p{
+	padding: 0 5px;
+	font-weight: 300;
+	margin-bottom: 15px;
+}
+
+.item .txt .btn{
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+	line-height: 1.5em;
+	border: 1px solid #000;
+	padding: 0 1em;
+	text-decoration: none;
+	border-radius: 200px;
+	margin-top: 15px;
+	color: #000;
+}
+.item .txt .btn:hover{
+	background-color: #000;
+	color: #fff;
+}
+
+
+
 
 
 /* CSS3's media queries(to adjust the screen's width accroding to device.)
@@ -414,7 +496,82 @@ hr{
 		border: 0;
 	}
 
+	/* creation image
+------------------------------------------------------------*/
+	#creation{
+		padding: 0 !important;
+	}
 
+	.creationImage{
+		width: 100%;
+		margin: auto;
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
 
+	.creationImage .item{
+		width: 100%;
+		margin: 0 5px;
+		display: flex;
+		flex-direction: column;
+		background-color: rgb(255,255,255,.6);
 
+		/*box-shadow: offset-x offset-y blur-radius color;*/
+		box-shadow: 0 5px 15px rgba(30,0,0,.5);
+		margin-top: 15px;
+		margin-bottom: 30px;
+		position: relative;
+	}
+
+	.item .pic{
+		width: 100%;
+
+	}
+	.item .pic img{
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.item .txt{
+		font-family: 'Noto Sans TC', sans-serif;
+		width: 100%;
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+		
+	}
+
+	.item .txt h2{
+		width: 80%;
+		font-size: 1.9em;
+		text-align: center;
+		margin-top: 5px;
+		font-weight: 700;
+		margin-bottom: .6em;
+	}
+	.item .txt p{
+		padding: 0 5px;
+		font-size: 1.4em;
+		font-weight: 300;
+		margin-bottom: 60px;
+	}
+
+	.item .txt .btn{
+		position: absolute;
+		right: 20px;
+		bottom: 20px;
+		line-height: 2.5em;
+		border: 1px solid #ccc;
+		padding: 0 1em;
+		text-decoration: none;
+		border-radius: 200px;
+		margin-top: 15px;
+		color: #000;
+	}
+	.item .txt .btn:hover{
+		background-color: #000;
+		color: #fff;
+	}
 }
