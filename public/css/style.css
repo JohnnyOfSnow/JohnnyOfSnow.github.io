@@ -299,7 +299,8 @@ hr{
 
 	.tech-img{
 		width: 100%;
-		padding: 10px;
+		margin: 0;
+		padding: 0;
 	}
 
 	.tech-img img{
