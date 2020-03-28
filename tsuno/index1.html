@@ -240,7 +240,7 @@
     
     // The function will be invoke, when you open the HTML file
 	window.onload = function (){
-		volumeOutput.innerHTML = 20;
+		volumeOutput.innerText = 20;
 		vid.volume = parseInt(volumeSlider.value) / 100;
 		userLock();
 	}
@@ -266,7 +266,7 @@
 
 	// Adjust video's volume
 	volumeSlider.oninput = function() {
-  		volumeOutput.innerHTML = volumeSlider.value;
+  		volumeOutput.innerText = volumeSlider.value;
   		vid.volume = parseInt(volumeSlider.value) / 100;
 	}
 
@@ -274,7 +274,7 @@
 	function timeLess(){
 		if(userTime < 0){
 			clearInterval(myTimer);
-			tsunomakiString.innerHTML = "つのまき出的拳是: " + SRP[tsuno];
+			tsunomakiString.innerText  = "つのまき出的拳是: " + SRP[tsuno];
 			record();
 			userLock();
 		}else{
@@ -328,7 +328,7 @@
 				paper.style.border = "3px solid #f00";
 			break;
 		}
-		document.getElementById("user").innerHTML = "玩家的拳是: " + SRP[player];
+		document.getElementById("user").innerText  = "玩家的拳是: " + SRP[player];
 	}
 
 	function startButtonEnabled(){
@@ -337,8 +337,8 @@
 
 	function startButtonAble(){
 		document.getElementById("startBtn").disabled = false;
-		document.getElementById("user").innerHTML = "";
-		tsunomakiString.innerHTML = "";
+		document.getElementById("user").innerText  = "";
+		tsunomakiString.innerText  = "";
 		clearUserChoice();
 	}
 
@@ -362,12 +362,12 @@
 
 	function record(){
 		userRecord = userRecord +  WINLOSE[player*3 + tsuno] + ": 你出的拳是:" + SRP[player] + " つのまき出的拳是: " + SRP[tsuno];
-		document.getElementById("user-record").innerHTML = userRecord;  
+		document.getElementById("user-record").innerText = userRecord;  
 	}
 
 	function clearRecord(){
 		userRecord = userRecord + "\n";
-		document.getElementById("user-record").innerHTML = userRecord;  
+		document.getElementById("user-record").innerText  = userRecord;  
 	}
 	
 
