@@ -69,10 +69,12 @@ $(function(){
 	$('#menuWrap').toggle(function(){
 		$(this).next().slideToggle();
 		$('#menuBtn').toggleClass('close');
+		$(('#menuBtnWord')).text('關閉');
 	},
 	function(){
 		$(this).next().slideToggle();
 		$('#menuBtn').removeClass('close');
+		$(('#menuBtnWord')).text('選單');
 	});
 
 

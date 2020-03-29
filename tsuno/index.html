@@ -175,8 +175,8 @@
 			<div class="item">
 				<form class="user-form">
 					<div class="user-button">
-						<button id="startBtn" onclick="playVid()" type="button">開始</button>
-						<button id="stopBtn" onclick="stopVid()" type="button">再來一局</button>
+						<button id="startBtn" onclick="playVid()" type="button" disabled="true">開始</button>
+						<button id="stopBtn" onclick="stopVid()" type="button" disabled="true">再來一局</button>
 					</div>
 					<div class="time">
 						<p>
@@ -232,7 +232,11 @@
 	window.onload = function (){
 		volumeOutput.innerHTML = 20;
 		vid.volume = parseInt(volumeSlider.value) / 100;
+		vid.setAttribute("src", "./movie/18.mp4");
+		vid.setAttribute("src", "./movie/19.mp4");
+		vid.setAttribute("src", "./movie/20.mp4");
 		userLock();
+		document.getElementById("startBtn").disabled = false;
 	}
 
 	// Play tsunomaki's video

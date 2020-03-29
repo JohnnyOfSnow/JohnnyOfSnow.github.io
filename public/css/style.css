@@ -56,13 +56,13 @@ img{
 	height: auto;
 }
 
-section{
+.content-section{
 	/* clear float: left 與 float: right 的浮動元素 */
 	clear: both;
 }
 
 
-section h2{
+.content-section h2{
 	width: 60%;
 	margin: 40px auto 30px auto;
 
@@ -71,7 +71,7 @@ section h2{
 	text-align: center;
 }
 
-section h2 span{
+.content-section h2 span{
 	padding-bottom: 10px;
 	border-bottom: 3px solid #000;
 }
@@ -114,7 +114,7 @@ hr{
 	width: 100%;
 	display: flex;
 	flex-direction: row;
-	align-self: flex-start;
+	justify-content: center;
 	border-bottom: 1px solid #aaa;
 }
 
@@ -136,8 +136,9 @@ hr{
 .tech-word .txt{
 	display: flex;
 	flex-direction: row;
-	align-self: flex-start;
-	margin-top: 10px;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
 	font-size: 1.2em;
 }
 
@@ -311,7 +312,7 @@ hr{
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
+	
 		/*border: 1px solid #a00;*/
 	}
 
@@ -376,6 +377,8 @@ hr{
 		width: auto !important;
 		max-height: 25px;
 	}
+
+
 	
   	a#menu{
   		display: inline-block;
@@ -395,6 +398,13 @@ hr{
 	  	margin: -1px 0 0 -7px;
 	  	background: #000;
 	  	transition: .2s;
+	}
+
+	#menuBtnWord{
+	  	display: block;
+	  	position: absolute;
+	  	bottom: -10px;
+		left: 7px;
 	}
 
 	#menuBtn:before, #menuBtn:after{
@@ -441,7 +451,7 @@ hr{
 		overflow: hidden;
 		position: relative;
 		left: 0;
-		top: -10px;
+		top: -8px;
 		z-index: 100;
 	}
 
