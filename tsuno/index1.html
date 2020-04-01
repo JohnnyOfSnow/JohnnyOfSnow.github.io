@@ -242,7 +242,11 @@
 	window.onload = function (){
 		volumeOutput.innerText = 20;
 		vid.volume = parseInt(volumeSlider.value) / 100;
+		vid.setAttribute("src", "./movie/18.mp4");
+		vid.setAttribute("src", "./movie/19.mp4");
+		vid.setAttribute("src", "./movie/20.mp4");
 		userLock();
+		document.getElementById("startBtn").disabled = false;
 	}
 
 	// Play tsunomaki's video
