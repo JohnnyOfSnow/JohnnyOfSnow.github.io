@@ -26,8 +26,6 @@
 			font-weight: 400;
 		}
 
-		
-
     	.navbar-light{
     		background-color: #FFFFFF;
     		margin-bottom: 30px;
@@ -51,10 +49,6 @@
 			flex-direction: column;
 			align-items: center;
 		}
-
-
-
-
 
 		.slider{
 			width: 50%;
@@ -170,7 +164,7 @@
 		<div class="row">
 			<div class=" col-12 col-md-6 col-lg-7 col-xl-7  video-display">
 				<video id="tsuno-video" class="col-large-6 col-xl-12">
-					<source src="./movie/20.mp4" type="video/mp4">
+					<source src="./movie/20.mp4" type="video/mp4"  preload="auto">
 				</video>
 				<div class="volume-control">
 					<p>
@@ -249,6 +243,13 @@
 		document.getElementById("startBtn").disabled = false;
 	}
 
+	vid.addEventListener('loadedmetadata', function() {
+	    if (vid.buffered.length === 0) return;
+
+	    var bufferedSeconds = vid.buffered.end(0) - vid.buffered.start(0);
+	    console.log(bufferedSeconds + ' seconds of video are ready to play!');
+	 });
+
 	// Play tsunomaki's video
 	function playVid() {
 		timerReset();
@@ -279,7 +280,6 @@
 		if(userTime < 0){
 			clearInterval(myTimer);
 			tsunomakiString.innerText  = "つのまき出的拳是: " + SRP[tsuno];
-			record();
 			userLock();
 		}else{
 			timeColor(userTime);
@@ -313,6 +313,7 @@
 				vid.setAttribute("src", "./movie/20.mp4");
 			break;
 			default:
+			break;
 		}
 	}
 
