@@ -4,7 +4,7 @@ $(function(){
 		$('#frontendword').show();
 		$('#backendword').hide();
 		$('#personalword').hide();
-		$('#frontBtn').addClass('focus');
+		$('#frontBtn').css('color', 'green');
   	// Handler for .ready() called.
 	});
 
@@ -56,7 +56,7 @@ $(function(){
 
 		$(this).addClass('active');
 
-		if (winW < 880){
+		if (winWidth < 880){
 			$('#menuWrap').next().slideToggle();
 			$('#menuBtn').removeClass('close');
 		}
@@ -79,22 +79,28 @@ $(function(){
 
 
 	$('#frontBtn').click(function(){
-		clearShillWord();
-		$('#frontendword').show();
+		clearSkillWord();
+		$('#frontBtn').css('color', 'green');
+		$('#frontendword').fadeIn(1000);
 	});
 
 	$('#backBtn').click(function(){
-		clearShillWord();
-		$('#backendword').show();
+		clearSkillWord();
+		$('#backBtn').css('color', 'green');
+		$('#backendword').fadeIn(1000);
 	});
 
 	$('#personalBtn').click(function(){
-		clearShillWord();
-		$('#personalword').show();
+		clearSkillWord();
+		$('#personalBtn').css('color', 'green');
+		$('#personalword').fadeIn(1000);
 	});
 
 	
-	function clearShillWord(){
+	function clearSkillWord(){
+		$('#frontBtn').css('color', 'black');
+		$('#backBtn').css('color', 'black');
+		$('#personalBtn').css('color', 'black');
 		$('#frontendword').hide();
 		$('#backendword').hide();
 		$('#personalword').hide();

@@ -44,14 +44,39 @@ a:active, a:focus, input:active, input:focus{outline: 0;}
 	font-size: 1.2em; /* font-size: +2; */ 
 }
 
-.top .image{
+#top{
+	position: relative;
+}
+
+#top .image{
+	width: 100%;
+	
+}
+
+#top .image img{
 	width: 100%;
 }
 
-.top .image img{
-	width: 100%;
+#top .txt{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: #fff;
 }
 
+#top .txt p{
+	font-size: 20px;
+	font-weight: 700;
+	position: relative;
+}
+
+#top .txt h2{
+	font-size: 40px;
+}
 
 
 /* ---------------------------------------------------- */
@@ -64,16 +89,18 @@ img{
 	height: auto;
 }
 
+#space{
+	display: none;
+}
+
 .content-section{
 	/* clear float: left 與 float: right 的浮動元素 */
 	clear: both;
 }
 
-
 .content-section h2{
 	width: 60%;
 	margin: 40px auto 30px auto;
-
 	font-size: 22px;
 	font-weight: normal;
 	text-align: center;
@@ -123,23 +150,47 @@ hr{
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
+	padding-bottom: 5px;
 	border-bottom: 1px solid #aaa;
 }
 
-.tech-word .tech-btn a{
+.tech-word .tech-btn ul{
+	display: flex;
+	flex-direction: row;
+}
+
+.tech-word .tech-btn ul li{
 	font-size: 1.4em;
 	margin-right: 15px;
+	font-weight: 700;
+}
+
+
+.tech-word .tech-btn ul li a{
 	color: #000;
 	text-decoration: none;
+	position: relative;
 }
 
-.tech-word .tech-btn a:hover{
-	text-decoration: none;
+.tech-word .tech-btn a::before{
+	position: absolute;
+	content: '';
+	width: 5px;
+	height: 5px;
+	top: -2px;
+	left: -10px;
+	background-color: #fa0;
+	border: 2px solid #fa0;
+	border-radius: 50px;
+	transition: .3s;
+	opacity: 0;
 }
 
-.tech-word .tech-btn a:focus{
-	text-decoration: underline;
+
+.tech-word .tech-btn li:hover  a::before{
+	opacity: 1;
 }
+
 
 .tech-word .txt{
 	display: flex;
@@ -300,6 +351,17 @@ hr{
 /* max-width 640px, mobile-only styles, use when QAing mobile issues */
 
 @media only screen and (max-width: 640px){
+	#top .txt p{
+		font-size: 10px;
+		font-weight: 700;
+		position: relative;
+	}
+
+	#top .txt h2{
+		font-size: 20px;
+	}
+
+
 	.tech{
 		display: flex;
 		flex-direction: column;
@@ -320,8 +382,6 @@ hr{
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-	
-		/*border: 1px solid #a00;*/
 	}
 
 	.tech-word .tech-btn{
@@ -329,22 +389,30 @@ hr{
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
+		padding-bottom: 5px;
 		border-bottom: 1px solid #aaa;
 	}
 
-	.tech-word .tech-btn a{
-		font-size: 1.6em;
+	.tech-word .tech-btn ul{
+		display: flex;
+		flex-direction: row;
+	}
+
+	.tech-word .tech-btn ul li{
+		font-size: 1.4em;
 		margin-right: 15px;
+		font-weight: 500;
+	}
+
+
+	.tech-word .tech-btn ul li a{
 		color: #000;
 		text-decoration: none;
+		position: relative;
 	}
 
 	.tech-word .tech-btn a:hover{
 		text-decoration: none;
-	}
-
-	.tech-word .tech-btn a:focus{
-		text-decoration: underline;
 	}
 
 	.tech-word .txt{
@@ -367,6 +435,12 @@ hr{
 		width: 100%; 
 		z-index: 500;
 	}
+
+	#space{
+		display: block;
+		height: 60px;
+		width: 100%;
+	}
 	
 	#sidebarWrap{
 		position: relative;
@@ -386,8 +460,6 @@ hr{
 		max-height: 25px;
 	}
 
-
-	
   	a#menu{
   		display: inline-block;
   		position: relative;
