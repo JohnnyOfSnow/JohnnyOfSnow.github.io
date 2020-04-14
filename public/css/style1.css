@@ -1,0 +1,410 @@
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css");
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,500,900&display=swap");
+
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+body{
+	background-color: rgba(239,236,219);
+	font-family: 'Noto Sans TC', sans-serif;
+}
+
+.side-menu{
+	position: fixed;
+    height: 100%;
+    left: 0;
+    width: 20%;
+    top: 0;
+    display: block;
+    padding: 0px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    overflow-x: hidden;
+    background-color: #fff;
+}
+
+.side-menu .sidebar-wrap{
+
+}
+
+.sidebar-wrap .sidebar-img{
+	margin: 5px auto;
+}
+
+.sidebar-wrap .sidebar-img img{
+	width: 80%;
+}
+
+.sidebar-wrap .mainNav{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.mainNav .menuWrap{
+
+}
+
+.mainNav li{
+	margin: 25px 0px;
+	text-align: center;
+}
+
+.mainNav li a{
+	text-decoration: none;
+}
+
+.sns{
+	display: flex;
+	flex-direction: row
+}
+
+.sns li{
+	margin: 0px 5px;
+}
+
+.content{
+  margin-left: 20%;
+  font-size: 20px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+  width: 78%;
+  background-color: rgba(239,236,219);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.nav-title{
+	font-size: 20px;
+	margin: 35px auto;
+}
+
+.nav-title span{
+	border-bottom: 2px solid #000;
+}
+
+
+#top{
+	position: relative;
+}
+
+#top img{
+	width: 100%;
+}
+
+#top .txt{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: #fff;
+}
+
+#skill{
+	background-color: #fff;
+	padding-bottom: 30px;
+}
+
+.tech{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	
+}
+
+.tech .item{
+	width: calc(100%/4);
+}
+
+.item h2{
+	font-size: 25px;
+	border-bottom: 1px solid #000;
+	margin-bottom: 20px;
+}
+
+.item .txt{
+	font-size: 14px;
+	
+}
+
+.news-item{
+	margin: 35px auto;
+}
+
+
+.news-item .news-date{
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+
+.news-item .news-txt{
+	font-size: 14px;
+}
+
+.creationImage{
+	width: 100%;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.creationImage .creation-item{
+	width: calc(100%/2.5);
+	margin: 0 5px;
+	display: flex;
+	flex-direction: column;
+	background-color: rgb(255,255,255,.6);
+
+	/*box-shadow: offset-x offset-y blur-radius color;*/
+	box-shadow: 0 5px 15px rgba(30,0,0,.5);
+	margin-top: 15px;
+	margin-bottom: 15px;
+	position: relative;
+}
+
+.creation-item .pic{
+	width: 100%;
+
+}
+.creation-item .pic img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.creation-item .txt{
+	width: 100%;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 60px;
+}
+
+.creation-item .txt h2{
+	font-size: 20px;
+	text-align: center;
+	margin-top: 5px;
+	font-weight: 700;
+	margin-bottom: .4em;
+}
+.creation-item .txt p{
+	padding: 0 5px;
+	font-size: 16px;
+	font-weight: 300;
+	margin-bottom: 15px;
+}
+
+.creation-item .txt .btn{
+	position: absolute;
+	right: 5px;
+	bottom: 8px;
+	line-height: 1.5em;
+	border: 1px solid #000;
+	padding: 0 1em;
+	text-decoration: none;
+	border-radius: 200px;
+	margin-top: 15px;
+	color: #000;
+	font-size: 15px;
+}
+.creation-item .txt .btn:hover{
+	background-color: #000;
+	color: #fff;
+}
+
+
+
+
+
+@media only screen and (min-width: 800px){
+	.panel{
+		/* Open Webkit's adjust text function*/
+		display: block !important;
+	}
+}
+
+/* Small screens - MOBILE */
+/* max-width 640px, mobile-only styles, use when QAing mobile issues */
+
+@media only screen and (max-width: 640px){
+
+}
+
+@media only screen and (max-width: 799px){
+	.side-menu{
+		position: fixed;
+	    width: 100%;
+	    z-index: 500;
+	    height: 61px;
+	}
+
+	.sidebar-wrap{
+		position: relative;
+		width: 100%;
+		height: 60px;
+		background: #fff;
+		border-bottom: 1px solid #ccc;
+	}
+
+	.sidebar-img{
+		text-align: center;
+		padding-top: 15px;
+		margin: 0;
+		padding: 0;
+	}
+
+	.sidebar-img img{
+		width: auto !important;
+		max-height: 25px;
+	}
+
+	.menu a{
+  		display: inline-block;
+  		position: relative;
+  		width: 40px;
+  		height: 40px;
+  		margin: 10px;
+	}
+
+	.menuBtn{
+	  	display: block;
+	  	position: absolute;
+	  	top: 50%;
+	  	left: 50%;
+	  	width: 18px;
+	  	height: 2px;
+	  	margin: -1px 0 0 -7px;
+	  	background: #000;
+	  	transition: .2s;
+	}
+
+	.menuBtnWord{
+	  	display: block;
+	  	position: absolute;
+	  	bottom: -10px;
+		left: 7px;
+	}
+
+	.menuBtn:before, .menuBtn:after{
+	  	display: block;
+	  	content: "";
+	  	position: absolute;
+	  	top: 50%;
+	  	left: 0;
+	  	width: 18px;
+	  	height: 2px;
+	  	background: #000;
+	  	transition: .3s;
+	}
+
+	.menuBtn:before{
+  		margin-top: -7px;
+	}
+
+	.menuBtn:after{
+  		margin-top: 5px;
+	}
+	
+	.menu a .close{
+  		background: transparent;
+	}
+
+	.menu a .close:before, .menu a .close:after{
+  		margin-top: 0;
+	}
+
+	.menu a .close:before{
+	  	transform: rotate(-45deg);
+	  	-webkit-transform: rotate(-45deg);
+	}
+
+	.menu a .close:after{
+	  	transform: rotate(-135deg);
+	  	-webkit-transform: rotate(-135deg);
+	}
+
+	.panel{
+		width: 100%;
+		display: none;
+		overflow: hidden;
+		position: relative;
+		left: 0;
+		top: -8px;
+		z-index: 100;
+	}
+
+	.mainNav{
+		position: absolute;
+		top: 0;
+		width: 100%;
+		text-align: right;
+	}
+
+	.mainNav .menuWrap{
+		display: block;
+	}
+
+	.mainNav ul{
+		border-bottom: 1px solid #ccc;
+		background: #fff;
+		text-align: left;
+	}
+
+	.mainNav li a{
+		position: relative;
+		display: block;
+		padding: 15px 25px;
+		border-bottom: 1px solid #ccc;
+		color: #000;
+		font-weight: 400;
+	}
+
+	.mainNav li a:before{
+		display: block;
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 5px;
+		width: 6px;
+		height: 6px;
+		margin: -4px 0 0 0;
+		border-top: solid 2px #000;
+		border-right: solid 2px #000;
+		-webkit-transform: rotate(45deg);
+		transform: rotate(45deg);
+	}
+
+	.mainNav .sns li{
+		display: inline-block;
+	}
+
+	.mainNav .sns li a{
+		position: relative;
+		display: inline-block;
+		padding: 15px 10px 0;
+		border: 0;
+	}
+
+	.mainNav .sns li a:before{
+		border: 0;
+	}
+
+	.content{
+	  margin-left: 0;
+	  width: 95%;
+	}
+
+	.creationImage .creation-item{
+		width: 100%;
+	}
+}
+
+
+

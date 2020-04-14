@@ -1,33 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title></title>
-	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,500&display=swap" rel="stylesheet">
-	<style type="text/css">
-		*{
-			padding: 0;
-			margin: 0;
-			list-style-type: none;
-		}
-		.wrapper{
-			display: flex;
-			flex-direction: row;
-			width: 1300px;
-			height: 600px;
-			border: 2px solid #f00;
-		}
-		.wrapper .display{
-			margin-top: 0;
-			border: 2px solid #00f;
-			display: flex;
-			flex-direction: column;
-			justify-content: flex-start;
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,500&display=swap" rel="stylesheet">
+    <style type="text/css">
+    	*{
+    		padding: 0;
+    		margin: 0;
+    		list-style: none;
+    		font-family: 'Noto Sans TC', sans-serif;
+    	}
+
+    	body{
+    		background-color: #DECEC7;
+    	}
+
+		p{
+			color: #79323F;
+			font-weight: 400;
 		}
 
-		video{
-			width: 800px;
-			height: 500px;
+    	.navbar-light{
+    		background-color: #FFFFFF;
+    		margin-bottom: 30px;
+    	}
+
+    	.video-display{
+    		
+    	}
+    	
+    	.container{
+    		margin: auto;
+    	}
+
+    	.volumn-control p{
+    		margin: 0;
+
+    	}
+
+		.user-content{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 		}
 
 		.slider{
@@ -50,33 +70,17 @@
 			margin-right: 20px;
 		}
 
-		.content{
-			width: 60%;
-			height: 100%;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			border: 2px solid #0ff;
-			padding: 0px 10px;
-			font-family: 'Noto Sans TC', sans-serif;
-		}
-
-		.content .item{
+		
+		.item{
 			margin: 10px 0px;
 			width: 370px;
 		}
 
-		.content .item:nth-child(2){
+		.item:nth-child(2){
 			height: 260px;
 		}
 
-		.instruction{
-			border: 1px solid #aaa;
-			font-family: 'Noto Sans TC', sans-serif;
-		}
-		
-		.content .item .time h2{
+		.item .time h2{
 			font-size: 15px;
 			content: '';
 			display: block;
@@ -150,60 +154,60 @@
 		h4{
 			color: red;
 		}
-
-	</style>
+    </style>
 </head>
 <body>
-	<div class="wrapper">
-		<div class="display">
-			<video id="tsuno-video" >
-				<source src="./movie/20.mp4" type="video/mp4">
-			</video>
-			<input type="range" min="1" max="100" value="20" class="slider" id="volumeSlider">
-			<p>
-				音量大小: 
-				<span id="volumeOutput"></span>
-			</p>
-		</div>
-		<div class="content">
-			<div class="item">
-				<div class="instruction">
-					<p>つのまき猜拳<br>
-					按下開始按鈕後，在時間結束之前，按下要出的拳。</p>
+	<nav class="navbar navbar-light">
+  		<a class="navbar-brand" href="#">つのまき猜拳</a>
+	</nav>
+	<div class="container  col-12 col-md-12 col-lg-12 col-xl-12">
+		<div class="row">
+			<div class=" col-6 col-md-6 col-lg-7 col-xl-7  video-display">
+				<video id="tsuno-video" class="col-large-6 col-xl-12">
+					<source src="./movie/20.mp4" type="video/mp4"  preload="auto">
+				</video>
+				<div class="volume-control">
+					<p>
+						<input type="range" min="1" max="100" value="20" class="slider" id="volumeSlider">
+						音量大小:<span id="volumeOutput"></span>
+					</p>					
 				</div>
 			</div>
-			<div class="item">
-				<form class="user-form">
-					<div class="user-button">
-						<button id="startBtn" onclick="playVid()" type="button" disabled="true">開始</button>
-						<button id="stopBtn" onclick="stopVid()" type="button" disabled="true">再來一局</button>
+			<div class=" col-6 col-md-6 col-lg-5 col-xl-5 user-content">
+				<div class="row">
+					<p>按下開始按鈕後，在時間結束之前，按下要出的拳。</p>
+				</div>
+				<div class="row">
+					<div class="item">
+						<form class="user-form">
+							<div class="user-button">
+								<button id="startBtn" onclick="playVid()" type="button">開始</button>
+								<button id="stopBtn" onclick="stopVid()" type="button">再來一局</button>
+							</div>
+							<div class="time">
+								<p>
+									猜拳倒數時間：
+								</p>
+								<h2 id="timebar"></h2>
+							</div>
+							<div class="user-choice">
+								<button id="user-scissors" onclick="userChoice(this.id)" type="button"><img src="./scissors.jpg"></button>
+								<button id="user-rock" onclick="userChoice(this.id)" type="button"><img src="./rock.jpg"></button>
+								<button id="user-paper" onclick="userChoice(this.id)" type="button"><img src="./paper.jpg"></button>
+							</div>
+							<p><span id="user"></span></p>
+							<p><span id="tsunomaki"></span></p>
+						</form>
 					</div>
-					<div class="time">
-						<p>
-							猜拳倒數時間：
-						</p>
-						<h2 id="timebar"></h2>
-					</div>
-					<div class="user-choice">
-						<button id="user-scissors" onclick="userChoice(this.id)" type="button"><img src="./scissors.jpg"></button>
-						<button id="user-rock" onclick="userChoice(this.id)" type="button"><img src="./rock.jpg"></button>
-						<button id="user-paper" onclick="userChoice(this.id)" type="button"><img src="./paper.jpg"></button>
-					</div>
-					<span id="user"></span>
-					<span id="tsunomaki"></span>
-				</form>
-			</div>
-			<div class="item">
-				<span>猜拳紀錄</span>
-				<div class="user-log">
-					<textarea name="" id="user-record" cols="30" rows="10" disabled="true"></textarea>
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>	
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
-
 <script>
 	const TIMEWIDTH = "200px";
     const TIMEWIDTH_INT = 200;
@@ -230,7 +234,7 @@
     
     // The function will be invoke, when you open the HTML file
 	window.onload = function (){
-		volumeOutput.innerHTML = 20;
+		volumeOutput.innerText = 20;
 		vid.volume = parseInt(volumeSlider.value) / 100;
 		vid.setAttribute("src", "./movie/18.mp4");
 		vid.setAttribute("src", "./movie/19.mp4");
@@ -238,6 +242,13 @@
 		userLock();
 		document.getElementById("startBtn").disabled = false;
 	}
+
+	vid.addEventListener('loadedmetadata', function() {
+	    if (vid.buffered.length === 0) return;
+
+	    var bufferedSeconds = vid.buffered.end(0) - vid.buffered.start(0);
+	    console.log(bufferedSeconds + ' seconds of video are ready to play!');
+	 });
 
 	// Play tsunomaki's video
 	function playVid() {
@@ -260,7 +271,7 @@
 
 	// Adjust video's volume
 	volumeSlider.oninput = function() {
-  		volumeOutput.innerHTML = volumeSlider.value;
+  		volumeOutput.innerText = volumeSlider.value;
   		vid.volume = parseInt(volumeSlider.value) / 100;
 	}
 
@@ -268,8 +279,7 @@
 	function timeLess(){
 		if(userTime < 0){
 			clearInterval(myTimer);
-			tsunomakiString.innerHTML = "つのまき出的拳是: " + SRP[tsuno];
-			record();
+			tsunomakiString.innerText  = "つのまき出的拳是: " + SRP[tsuno];
 			userLock();
 		}else{
 			timeColor(userTime);
@@ -303,6 +313,7 @@
 				vid.setAttribute("src", "./movie/20.mp4");
 			break;
 			default:
+			break;
 		}
 	}
 
@@ -322,7 +333,7 @@
 				paper.style.border = "3px solid #f00";
 			break;
 		}
-		document.getElementById("user").innerHTML = "玩家的拳是: " + SRP[player];
+		document.getElementById("user").innerText  = "玩家的拳是: " + SRP[player];
 	}
 
 	function startButtonEnabled(){
@@ -331,8 +342,8 @@
 
 	function startButtonAble(){
 		document.getElementById("startBtn").disabled = false;
-		document.getElementById("user").innerHTML = "";
-		tsunomakiString.innerHTML = "";
+		document.getElementById("user").innerText  = "";
+		tsunomakiString.innerText  = "";
 		clearUserChoice();
 	}
 
@@ -356,12 +367,12 @@
 
 	function record(){
 		userRecord = userRecord +  WINLOSE[player*3 + tsuno] + ": 你出的拳是:" + SRP[player] + " つのまき出的拳是: " + SRP[tsuno];
-		document.getElementById("user-record").innerHTML = userRecord;  
+		document.getElementById("user-record").innerText = userRecord;  
 	}
 
 	function clearRecord(){
 		userRecord = userRecord + "\n";
-		document.getElementById("user-record").innerHTML = userRecord;  
+		document.getElementById("user-record").innerText  = userRecord;  
 	}
 	
 

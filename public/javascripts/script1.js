@@ -66,17 +66,15 @@ $(function(){
 	
 
 	$('.panel').hide();
-	$('#menuWrap').toggle(function(){
+	$('.menuWrap').toggle(function(){
 		$(this).next().slideToggle();
-		$('#sidebar').toggleClass('close');
-		$('#menuBtn').toggleClass('close');
-		$(('#menuBtnWord')).text('關閉');
+		$('.menuBtn').toggleClass('close');
+		$(('.menuBtnWord')).text('關閉');
 	},
 	function(){
 		$(this).next().slideToggle();
-		$('#sidebar').removeClass('close');
-		$('#menuBtn').removeClass('close');
-		$(('#menuBtnWord')).text('選單');
+		$('.menuBtn').removeClass('close');
+		$(('.menuBtnWord')).text('選單');
 	});
 
 
