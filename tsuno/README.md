@@ -5,7 +5,7 @@
 ## 個人專案: 角卷棉芽猜拳
 ***
 
-![image](https://github.com/JohnnyOfSnow/WebLayout_pratice/blob/master/project_tsunoSRP/image/demo.jpg)
+![image](https://github.com/JohnnyOfSnow/JohnnyOfSnow.github.io/blob/master/project_tsunoSRP/image/demo.jpg)
 
 **專案說明：經由撥放影片與角卷棉芽猜拳**
 

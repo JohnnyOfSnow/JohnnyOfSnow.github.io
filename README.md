@@ -5,7 +5,7 @@
 ## 個人專案: 個人網頁製作
 ***
 
-![image](https://github.com/JohnnyOfSnow/WebLayout_pratice/blob/master/public/images/demo.gif)
+![image](https://github.com/JohnnyOfSnow/JohnnyOfSnow.github.io/blob/master/public/images/demo.gif)
 
 **專案說明：使用學到的技術，證明自己和大學時不同**
 
