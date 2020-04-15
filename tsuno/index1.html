@@ -164,7 +164,7 @@
 		<div class="row">
 			<div class=" col-12 col-md-6 col-lg-7 col-xl-7  video-display">
 				<video id="tsuno-video" class="col-large-6 col-xl-12">
-					<source src="./movie/20.mp4" type="video/mp4"  preload="auto">
+					<source src="" type="video/mp4"  preload="auto">
 				</video>
 				<div class="volume-control">
 					<p>
@@ -231,6 +231,7 @@
     var tsuno = 0; // tsuno = つの
     var player = 0;
     var userRecord = "";
+    var videoPlay = false;
     
     // The function will be invoke, when you open the HTML file
 	window.onload = function (){
@@ -244,24 +245,18 @@
 	    if (vid.buffered.length === 0) return;
 	    var bufferedSeconds = vid.buffered.end(0) - vid.buffered.start(0);
 	    console.log(bufferedSeconds + ' seconds of video are ready to play!');
+	    console.log('影片播放');
+	    myTimer = setInterval("timeLess()",100);
+	    console.log('開始倒數時間');
 	 });
 
-	vid.addEventListener("progress", function() {
-		console.log('video is loading!');
-　　     	// When buffer is 1 whole video is buffered
-　　		if (Math.round(vid.buffered.end(0)) / Math.round(vid.seekable.end(0)) === 1) {
-	　　		// Entire video is downloaded
-			console.log('video are ready to play!');
-			vid.play();
-    		myTimer = setInterval("timeLess()",100);
-
-　　		}
-　　}, false);
-
+	
 	// Play tsunomaki's video
 	function playVid() {
 		timerReset();
 		tsunoChoice();
+		vid.play();
+		console.log('影片播放指令');
 		userOpen();
 		startButtonEnabled();
     	
