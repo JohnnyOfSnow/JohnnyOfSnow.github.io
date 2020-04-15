@@ -162,7 +162,7 @@
 	</nav>
 	<div class="container  col-12 col-md-12 col-lg-12 col-xl-12">
 		<div class="row">
-			<div class=" col-6 col-md-6 col-lg-7 col-xl-7  video-display">
+			<div class=" col-12 col-md-6 col-lg-7 col-xl-7  video-display">
 				<video id="tsuno-video" class="col-large-6 col-xl-12">
 					<source src="./movie/20.mp4" type="video/mp4"  preload="auto">
 				</video>
@@ -173,7 +173,7 @@
 					</p>					
 				</div>
 			</div>
-			<div class=" col-6 col-md-6 col-lg-5 col-xl-5 user-content">
+			<div class=" col-12 col-md-6 col-lg-5 col-xl-5 user-content">
 				<div class="row">
 					<p>按下開始按鈕後，在時間結束之前，按下要出的拳。</p>
 				</div>
@@ -236,19 +236,27 @@
 	window.onload = function (){
 		volumeOutput.innerText = 20;
 		vid.volume = parseInt(volumeSlider.value) / 100;
-		vid.setAttribute("src", "./movie/18.mp4");
-		vid.setAttribute("src", "./movie/19.mp4");
-		vid.setAttribute("src", "./movie/20.mp4");
 		userLock();
 		document.getElementById("startBtn").disabled = false;
 	}
 
 	vid.addEventListener('loadedmetadata', function() {
 	    if (vid.buffered.length === 0) return;
-
 	    var bufferedSeconds = vid.buffered.end(0) - vid.buffered.start(0);
 	    console.log(bufferedSeconds + ' seconds of video are ready to play!');
 	 });
+
+	vid.addEventListener("progress", function() {
+		console.log('video is loading!');
+　　     	// When buffer is 1 whole video is buffered
+　　		if (Math.round(vid.buffered.end(0)) / Math.round(vid.seekable.end(0)) === 1) {
+	　　		// Entire video is downloaded
+			console.log('video are ready to play!');
+			vid.play();
+    		myTimer = setInterval("timeLess()",100);
+
+　　		}
+　　}, false);
 
 	// Play tsunomaki's video
 	function playVid() {
@@ -256,8 +264,7 @@
 		tsunoChoice();
 		userOpen();
 		startButtonEnabled();
-    	vid.play();
-    	myTimer = setInterval("timeLess()",100);
+    	
 	}
 
 	// Stop playing tsunomaki's video
@@ -374,6 +381,4 @@
 		userRecord = userRecord + "\n";
 		document.getElementById("user-record").innerText  = userRecord;  
 	}
-	
-
 </script>
