@@ -1,0 +1,323 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,500,900&display=swap");
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css");
+
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-family: 'Noto Sans TC', sans-serif;
+}
+
+#wrap{
+	width: 100%;
+}
+
+#top{
+	width: 100%;
+	padding: 80px 0 30px;
+}
+
+#top #title{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#top #title h2{
+	letter-spacing: 15px;
+	font-size: 50px;
+}
+
+#top #title h4{
+	letter-spacing: 4px;
+
+}
+
+#main-header{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+#main-header nav{
+	margin-top: 45px;
+}
+
+.nav-wrap ul{
+	display: flex;
+	flex-direction: row;
+
+}
+
+.nav-wrap ul li{
+	margin-right: 70px;
+	font-weight: 100;
+	letter-spacing: 2px;
+}
+
+
+.nav-wrap ul li a{
+	text-decoration: none;
+	color: #000;
+	position: relative;
+}
+
+.nav-wrap a:before{
+	content: '';
+	position: absolute;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background-color: #a0ee0a;
+	left: -8px;
+	opacity: 0;
+	transition: opacity .2s;
+}
+
+.nav-wrap ul li:hover a:before{
+	opacity: 1;
+}
+
+
+.container{
+	width: 100%;
+	margin: 0 auto;
+}
+
+.container .main-img{
+	width: 100%;
+}
+
+.container .main-img img{
+	width: 100%;
+}
+
+.container .swiper-part{
+	width: 90%;
+	margin: 40px auto;
+}
+
+.swiper-slide {
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.swiper-container{
+	height: 300px;
+}
+
+.swiper-pagination{
+    bottom: 10px;
+}
+
+.swiper-pagination .swiper-pagination-bullet-active{
+    background-color: #a0ee0a;
+}
+
+.container .news{
+	margin: 60px auto 0;
+	width: 980px;
+	text-align: center;
+}
+
+.news h2{
+	letter-spacing: 2px;
+}
+
+.news .txt{
+	margin-top: 40px;
+}
+
+.news-item{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 14px;
+	border: 1px solid #ccc;
+	padding: 14px 36px 16px;
+}
+
+.news-item:hover{
+	background-color: rgba(244,252,229,1);
+}
+
+.news-item p:nth-child(1){
+	margin-right: 50px;
+	font-weight: 100;
+	letter-spacing: 2px;
+}
+
+#more-news-button{
+	margin: 60px auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+#more-news-button a{
+	width: 255px;
+	height: 50px;
+	background-color: #fff;
+	border: 1px solid #000;
+	font-size: 15px;
+	font-weight: 700;
+	letter-spacing: 2px;
+	text-decoration: none;
+	color: #000;
+	background-color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	overflow: hidden;
+	z-index: -1;
+}
+
+#more-news-button a:before{
+	content: '';
+	position: absolute;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background-color: #a0ee0a;
+	left: 50%;
+	top: 50%;
+	transition: transform .4s;
+	transform: scale(0);
+	z-index: -5;
+}
+
+
+#more-news-button:hover a:before{
+	transform: scale(46);
+}
+
+.container .twiiter-part{
+	margin: 60px auto 0;
+	width: 980px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.twiiter-part h2{
+	letter-spacing: 2px;
+	margin-bottom: 60px;
+}
+
+.twiiter-item{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	width: 100%;
+	margin: 30px auto;
+	border: 1px solid #eee;
+	
+}
+
+.twiiter-item:hover{
+	background-color: rgba(244,252,229,1);
+	
+}
+
+.twiiter-item .twitter-txt{
+	text-align: left;
+	padding-top: 40px;
+	padding-left: 40px;
+	margin-bottom: 40px;
+	font-weight: 300;
+}
+
+
+.twiiter-item .twitter-img{
+	width: 870px;
+	height: 490px;
+	align-self: center;
+	margin-bottom: 20px;
+	border: 3px solid #eee;
+	border-radius: 20px;
+}
+
+.twiiter-item .twitter-img img{
+	width: 100%;
+}
+
+
+
+
+#official-twitter-button{
+	margin: 60px auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+
+}
+
+#official-twitter-button{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#official-twitter-button a{
+	width: 255px;
+	height: 50px;
+	background-color: #fff;
+	border: 1px solid #000;
+	font-size: 15px;
+	font-weight: 700;
+	letter-spacing: 2px;
+	text-decoration: none;
+	color: #000;
+	background-color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	overflow: hidden;
+	z-index: -1;
+}
+
+#official-twitter-button a:before{
+	content: '';
+	position: absolute;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background-color: #a0ee0a;
+	left: 50%;
+	top: 50%;
+	transition: transform .4s;
+	transform: scale(0);
+	z-index: -5;
+}
+
+
+#official-twitter-button:hover a:before{
+	transform: scale(46);
+}
+
+
+
+
+
+
+
+

@@ -7,8 +7,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,500&display=swap" rel="stylesheet">
+
     <style type="text/css">
     	*{
     		padding: 0;
@@ -31,17 +31,16 @@
     		margin-bottom: 30px;
     	}
 
-    	.video-display{
-    		
-    	}
-    	
     	.container{
     		margin: auto;
     	}
 
-    	.volumn-control p{
-    		margin: 0;
 
+    	.volume-control {
+    		display: flex;
+    		justify-content: flex-end;
+    		align-items: center;
+    		
     	}
 
 		.user-content{
@@ -55,7 +54,7 @@
 			height: 25px;
 			align-self: flex-end;
 			margin: 20px 30px;
-			background: #d3d3d3;
+			background: #000000;
 			outline: none;
 			opacity: 0.7;
   			transition: opacity .2s;
@@ -65,22 +64,12 @@
   			opacity: 1;
 		}
 		
-		.wrapper .display p{
-			align-self: flex-end;
-			margin-right: 20px;
-		}
-
-		
-		.item{
+		.user-form{
 			margin: 10px 0px;
 			width: 370px;
 		}
 
-		.item:nth-child(2){
-			height: 260px;
-		}
-
-		.item .time h2{
+		.user-form .time h2{
 			font-size: 15px;
 			content: '';
 			display: block;
@@ -97,6 +86,12 @@
 
 		.user-form span{
 			display: block;
+		}
+
+
+		.user-content-instruction{
+			height: 46px;
+			margin-bottom: 35px;
 		}
 
 		.user-button{
@@ -167,39 +162,33 @@
 					<source src="" type="video/mp4"  preload="auto">
 				</video>
 				<div class="volume-control">
-					<p>
-						<input type="range" min="1" max="100" value="20" class="slider" id="volumeSlider">
-						音量大小:<span id="volumeOutput"></span>
-					</p>					
+					<input type="range" min="1" max="100" value="20" class="slider" id="volumeSlider">
+					音量大小:<span id="volumeOutput"></span>			
 				</div>
 			</div>
 			<div class=" col-12 col-md-6 col-lg-5 col-xl-5 user-content">
-				<div class="row">
-					<p>按下開始按鈕後，在時間結束之前，按下要出的拳。</p>
+				<div class="user-content-instruction">
+					<p id="instruction">請按下開始按鈕</p>
 				</div>
-				<div class="row">
-					<div class="item">
-						<form class="user-form">
-							<div class="user-button">
-								<button id="startBtn" onclick="playVid()" type="button">開始</button>
-								<button id="stopBtn" onclick="stopVid()" type="button">再來一局</button>
-							</div>
-							<div class="time">
-								<p>
-									猜拳倒數時間：
-								</p>
-								<h2 id="timebar"></h2>
-							</div>
-							<div class="user-choice">
-								<button id="user-scissors" onclick="userChoice(this.id)" type="button"><img src="./scissors.jpg"></button>
-								<button id="user-rock" onclick="userChoice(this.id)" type="button"><img src="./rock.jpg"></button>
-								<button id="user-paper" onclick="userChoice(this.id)" type="button"><img src="./paper.jpg"></button>
-							</div>
-							<p><span id="user"></span></p>
-							<p><span id="tsunomaki"></span></p>
-						</form>
+				<form class="user-form">
+					<div class="user-button">
+						<button id="startBtn" onclick="playVid()" type="button">開始</button>
+						<button id="stopBtn" onclick="stopVid()" type="button">再來一局</button>
 					</div>
-				</div>
+					<div class="time">
+						<p>
+							猜拳倒數時間：
+						</p>
+						<h2 id="timebar"></h2>
+					</div>
+					<div class="user-choice">
+						<button id="user-scissors" onclick="userChoice(this.id)" type="button"><img src="./scissors.jpg"></button>
+						<button id="user-rock" onclick="userChoice(this.id)" type="button"><img src="./rock.jpg"></button>
+						<button id="user-paper" onclick="userChoice(this.id)" type="button"><img src="./paper.jpg"></button>
+					</div>
+					<p><span id="user"></span></p>
+					<p><span id="tsunomaki"></span></p>
+				</form>
 			</div>
 		</div>
 	</div>	
@@ -229,7 +218,7 @@
     var userTime = TIMEMAX;
     var currentWidth = 0;
     var tsuno = 0; // tsuno = つの
-    var player = 0;
+    var player = -1;
     var userRecord = "";
     var videoPlay = false;
     
@@ -241,25 +230,25 @@
 		document.getElementById("startBtn").disabled = false;
 	}
 
+	// Buffer video when choose another video.
 	vid.addEventListener('loadedmetadata', function() {
+		
 	    if (vid.buffered.length === 0) return;
-	    var bufferedSeconds = vid.buffered.end(0) - vid.buffered.start(0);
-	    console.log(bufferedSeconds + ' seconds of video are ready to play!');
-	    console.log('影片播放');
+	    var bufferedSeconds = vid.buffered.end(0) - vid.buffered.start(0);    
 	    myTimer = setInterval("timeLess()",100);
-	    console.log('開始倒數時間');
-	 });
+	    document.getElementById("instruction").innerText = "在時間結束之前，按下要出的拳。";
+	});
 
 	
 	// Play tsunomaki's video
 	function playVid() {
+		player = -1;
+		document.getElementById("instruction").innerText = "影片載入中，請稍等";
 		timerReset();
 		tsunoChoice();
 		vid.play();
-		console.log('影片播放指令');
 		userOpen();
 		startButtonEnabled();
-    	
 	}
 
 	// Stop playing tsunomaki's video
@@ -269,6 +258,7 @@
 		 timerReset();
 		 startButtonAble();
 		 userLock();
+		 clearRecord();
 	}
 
 	// Adjust video's volume
@@ -281,7 +271,7 @@
 	function timeLess(){
 		if(userTime < 0){
 			clearInterval(myTimer);
-			tsunomakiString.innerText  = "つのまき出的拳是: " + SRP[tsuno];
+			record();
 			userLock();
 		}else{
 			timeColor(userTime);
@@ -335,7 +325,6 @@
 				paper.style.border = "3px solid #f00";
 			break;
 		}
-		document.getElementById("user").innerText  = "玩家的拳是: " + SRP[player];
 	}
 
 	function startButtonEnabled(){
@@ -368,12 +357,16 @@
 	}
 
 	function record(){
-		userRecord = userRecord +  WINLOSE[player*3 + tsuno] + ": 你出的拳是:" + SRP[player] + " つのまき出的拳是: " + SRP[tsuno];
-		document.getElementById("user-record").innerText = userRecord;  
+		if(player == -1){
+			userRecord = WINLOSE[1] + "\n因為你沒有出拳";
+		}else{
+			userRecord = WINLOSE[player*3 + tsuno] + "\n你出的拳是:" + SRP[player] + "\nつのまき出的拳是: " + SRP[tsuno];
+		}
+		document.getElementById("instruction").innerText = userRecord;
 	}
 
 	function clearRecord(){
 		userRecord = userRecord + "\n";
-		document.getElementById("user-record").innerText  = userRecord;  
+		document.getElementById("instruction").innerText = "請按下開始按鈕";  
 	}
 </script>
