@@ -58,6 +58,12 @@
 		.text{
 			font-size: 50px;
 		}
+
+		.answer{
+			margin-bottom: 20px;
+			font-size: 50px;
+			color: #f00; /* red */
+		}
 		
 	</style>
 
@@ -72,11 +78,12 @@
 	    	<button onclick="geoFindMe()">鎖定我的位置</button>
 	    	<button onclick="checkAnswer()">確認</button>
 	    	<button onclick="nextQuestion()">下一題</button>
-			<button onclick="clearRecord()">清空</button>
 	    </div>
 		
 		<div id="out" class="text"></div>
-		<div id="result" class="text"></div>
+		<div>
+			<span id="result" class="answer"></span>
+		</div>
 	</div>
 </body>
 </html>
@@ -166,7 +173,8 @@
 		}
 		document.getElementById("question").innerText = "現在是第" + questionNo + "題";
 		document.getElementById("question_text").innerText = question_text[questionNo];
-		
+		document.getElementById("result").innerText = "";
+		clearRecord();
 	}
 
 </script>
