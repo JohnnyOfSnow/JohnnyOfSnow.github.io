@@ -146,10 +146,10 @@
 		//console.log("誤差東經: " + delta_longitude);
 
 		if(delta_latitude < delta && delta_longitude < delta){
-			document.getElementById("question").innerText = "答對";
+			document.getElementById("result").innerText = "答對";
 			//console.log("答對");
 		}else{
-			document.getElementById("question").innerText = "答錯";
+			document.getElementById("result").innerText = "答錯";
 			//console.log("答錯");
 		}
 	}
@@ -166,7 +166,7 @@
 		}
 		document.getElementById("question").innerText = "現在是第" + questionNo + "題";
 		document.getElementById("question_text").innerText = question_text[questionNo];
-		document.getElementById("question").innerText = "";
+		
 	}
 
 </script>
