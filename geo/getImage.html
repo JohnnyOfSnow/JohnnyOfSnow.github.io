@@ -3,6 +3,7 @@
 <head>
 	<title>Geo Test.</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+
 	<style type="text/css">
 		*{
 			padding: 0;
@@ -56,6 +57,12 @@
 		.text{
 			font-size: 50px;
 		}
+
+		#canvas{
+			width: 100%;
+			height: 500px;
+			border: 1px solid #ff0;
+		}
 		
 	</style>
 </head>
@@ -65,6 +72,7 @@
 		<form name="form0" id="form0" class="user-form">
 			<div class="user-img">
 				<img src="" id="img0" >
+
 			</div>
 			<label class="user-uploadImg">
 				上傳圖片
@@ -78,12 +86,17 @@
 		
 	    
 		<div id="out" class="text"></div>
+
+		<canvas id="canvas"></canvas>
 	</div>
 </body>
 </html>
 <script>
 	var recordStr = "";
 	var output = document.getElementById("out");
+	var file;
+
+
 
 	// The function will be invoke, when you open the HTML file
 	window.onload = function (){
@@ -124,13 +137,37 @@
 	 /**
      * 使用HTML5 File API, 來即時預覽image
      */
+     /**
     $("#file0").change(function(){
         var objUrl = getObjectURL(this.files[0]) ;
-        console.log("objUrl = "+objUrl) ;
         if (objUrl) {
             $("#img0").attr("src", objUrl) ;
+
+
         }
-    }) ;
+    }) ;*/
+
+    $('#file0').on('change', function(e){      
+	  file = this.files[0];//將上傳檔案轉換為base64字串
+	      
+	  const fr = new FileReader();//建立FileReader物件
+	  fr.onload = function (e) {
+	    $('#img0').attr('src', e.target.result);//读取的结果放入圖片
+	  };
+	      
+	  // 使用 readAsDataURL 將圖片轉成 Base64
+	  fr.readAsDataURL(file);
+
+	  	var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+
+		var image = new Image();
+		image.src = '';
+		image.onload = function() {
+		  ctx.drawImage(image, 0, 0);
+		};
+
+	});
     
     /**
      * 建立一個可存取到該file的url

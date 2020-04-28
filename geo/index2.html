@@ -43,6 +43,7 @@
 		}
 		.user-button{
 			display: flex;
+			flex-wrap: wrap;
 			margin: 20px 0px;
 		}
 		.user-button button{
@@ -73,6 +74,7 @@
 	    </form>
 	    <div class="user-button">
 	    	<button onclick="geoFindMe()">顯示我的位置</button>
+	    	<button onclick="checkAnswer()">確認</button>
 			<button onclick="clearRecord()">清空</button>
 	    </div>
 		
@@ -84,6 +86,18 @@
 <script>
 	var recordStr = "";
 	var output = document.getElementById("out");
+	var latitude;
+	var longitude;
+	const answerLati = [24.9788];
+	const answerLong = [121.4172];
+	var questionNo = 0;
+	const delta = 0.001;
+
+	/**
+	 * 緯度: 24.978874899999997°  經度: 121.4172665°
+	 *
+	 */
+
 
 	// The function will be invoke, when you open the HTML file
 	window.onload = function (){
@@ -96,9 +110,11 @@
 		 	return;
   		}
   		function success(position) {
-		    var latitude  = position.coords.latitude;
-		    var longitude = position.coords.longitude;
-		    addRecord(latitude, longitude);
+  			console.log("確切北緯位置: " + position.coords.latitude);
+  			console.log("確切東經位置: " + position.coords.longitude);
+		    latitude  = intToFloat(position.coords.latitude, 4);
+		    longitude = intToFloat(position.coords.longitude, 4);
+		    addRecord();
 		   
 		  };
 
@@ -111,7 +127,7 @@
 		  navigator.geolocation.getCurrentPosition(success, error);
 	}
 
-	function addRecord(latitude, longitude){
+	function addRecord(){
 		 recordStr = recordStr + '<p>您的位置在；<br>緯度: ' + latitude + '° <br>經度: ' + longitude + '°</p><br>';
 		 output.innerHTML = recordStr;
 	}
@@ -120,6 +136,30 @@
 		recordStr = "";
 		output.innerHTML = recordStr;
 	}
+
+
+
+	function intToFloat(num, decPlaces) { 
+		return num.toFixed(decPlaces); 
+	}
+
+	function checkAnswer(){
+		const delta_latitude = Math.abs(answerLati[questionNo] - latitude);
+		const delta_longitude = Math.abs(answerLong[questionNo] - longitude);
+		console.log("誤差北緯: " + delta_latitude);
+		console.log("誤差東經: " + delta_longitude);
+
+		if(delta_latitude < delta && delta_longitude < delta){
+			console.log("答對");
+		}else{
+			console.log("答錯");
+		}
+	}
+
+
+
+
+
 
 	 /**
      * 使用HTML5 File API, 來即時預覽image
