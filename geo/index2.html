@@ -69,15 +69,14 @@
 		<div id="question_text" class="text">沒有行人號誌燈的危險出入口</div>
 		
 	    <div class="user-button">
-	    	<button onclick="geoFindMe()">顯示我的位置</button>
+	    	<button onclick="geoFindMe()">鎖定我的位置</button>
 	    	<button onclick="checkAnswer()">確認</button>
 	    	<button onclick="nextQuestion()">下一題</button>
 			<button onclick="clearRecord()">清空</button>
-
 	    </div>
 		
-	    
 		<div id="out" class="text"></div>
+		<div id="result" class="text"></div>
 	</div>
 </body>
 </html>
@@ -107,8 +106,8 @@
 		 	return;
   		}
   		function success(position) {
-  			console.log("確切北緯位置: " + position.coords.latitude);
-  			console.log("確切東經位置: " + position.coords.longitude);
+  			//console.log("確切北緯位置: " + position.coords.latitude);
+  			//console.log("確切東經位置: " + position.coords.longitude);
 		    latitude  = intToFloat(position.coords.latitude, 4);
 		    longitude = intToFloat(position.coords.longitude, 4);
 		    addRecord();
@@ -141,18 +140,19 @@
 	function checkAnswer(){
 		const delta_latitude = Math.abs(answerLati[questionNo] - latitude);
 		const delta_longitude = Math.abs(answerLong[questionNo] - longitude);
-		console.log("題目北緯: " + answerLati[questionNo]);
-		console.log("題目東經: " + answerLong[questionNo]);
-		console.log("誤差北緯: " + delta_latitude);
-		console.log("誤差東經: " + delta_longitude);
+		//console.log("題目北緯: " + answerLati[questionNo]);
+		//console.log("題目東經: " + answerLong[questionNo]);
+		//console.log("誤差北緯: " + delta_latitude);
+		//console.log("誤差東經: " + delta_longitude);
 
 		if(delta_latitude < delta && delta_longitude < delta){
-			console.log("答對");
+			document.getElementById("question").innerText = "答對";
+			//console.log("答對");
 		}else{
-			console.log("答錯");
+			document.getElementById("question").innerText = "答錯";
+			//console.log("答錯");
 		}
 	}
-
 
 	function adjustDelta(){
 
@@ -166,6 +166,7 @@
 		}
 		document.getElementById("question").innerText = "現在是第" + questionNo + "題";
 		document.getElementById("question_text").innerText = question_text[questionNo];
+		document.getElementById("question").innerText = "";
 	}
 
 </script>
