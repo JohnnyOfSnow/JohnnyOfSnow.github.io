@@ -211,7 +211,8 @@
 <script>
 	const TIMEWIDTH = "200px";
     const TIMEWIDTH_INT = 200;
-    const TIMEMAX = 13.5;
+    const SPEED_NORMAL = 0;
+    const SPEED_FAST = 1;
    
     var vid = document.getElementById("tsuno-video");
     var volumeSlider = document.getElementById("volumeSlider");
@@ -223,16 +224,20 @@
     var paper = document.getElementById("user-paper");
 
     var myTimer;
-    var userTime = TIMEMAX;
+    var userTime;
+    var timeMax = 0;
     var currentWidth = 0;
     var tsuno = 0; // tsuno = つの
     var player = -1; // player no choice
     var userRecord = "";
     var player_stage = 0;
+    var speed = 1;
 
     var myLangArray;
     var SRP = ["","",""]; // S = scissors, R = rock, P = paper
     var WINLOSE = ["", "", "", "", "", "", "", "", ""];
+
+    var tsunoVideo = ["./movie/18.mp4","./movie/10.mp4", "./movie/19.mp4", "./movie/11.mp4", "./movie/20.mp4", "./movie/12.mp4"];
 
     
     // The function will be invoke, when you open the HTML file
@@ -345,6 +350,7 @@
 
 	// Control the time countdown
 	function timeLess(){
+		//const TIMEMAX = userTime;  
 		if(userTime < 0){
 			clearInterval(myTimer);
 			record();
@@ -352,9 +358,11 @@
 		}else{
 			timeColor(userTime);
 			userTime = userTime - 0.1;
-			currentWidth = (userTime / TIMEMAX) * TIMEWIDTH_INT;
+			currentWidth = (userTime / timeMax) * TIMEWIDTH_INT;
+			console.log(currentWidth);
 			timeBar.style.width = currentWidth.toString() + "px";
 		}
+		
 	}
 
 	function timeColor(){
@@ -362,7 +370,6 @@
 	}
 
 	function timerReset(){
-		userTime = TIMEMAX;
 	    timeBar.style.width = TIMEWIDTH;
 	    timeBar.style.backgroundColor = "#0f0";
 	    clearInterval(myTimer);
@@ -370,20 +377,29 @@
 
 	function tsunoChoice(){
 		tsuno = Math.floor(Math.random() * 3); // random number from 0 to 2
-		switch(tsuno){
-			case 0:
-				vid.setAttribute("src", "./movie/18.mp4");
+		speed = Math.floor(Math.random() * 2); // random number from 0 to 1
+		vid.setAttribute("src", tsunoVideo[tsuno*2 + speed]);
+		setSpeed(speed);
+	}
+
+
+	function setSpeed(speed){
+		switch(speed){
+			case SPEED_NORMAL:
+				timeMax = 13.5;
 			break;
-			case 1:
-				vid.setAttribute("src", "./movie/19.mp4");
-			break;
-			case 2:
-				vid.setAttribute("src", "./movie/20.mp4");
+
+			case SPEED_FAST:
+				timeMax = 6.7;
 			break;
 			default:
+
 			break;
 		}
+		userTime = timeMax;
 	}
+
+
 
 	function userChoice(clicked_id){
 		clearUserChoice();

@@ -1,35 +1,33 @@
-var rectLocationX = 650;
-var rectLocationY = 40;
-var rectAmount = 13;
-var rect_length = 80;
-var rect_width = 30;
-var wordLocationX = 662;
-var wordLocationY = 31;
-var canvas;
-var ctx;
-var move = 0; // best = 165
-var state = 0;
-var timer;
-var timer_delta = 0.1;
-var trangle_delta = 1;
+const rectLocationX = 650;
+const rectLocationY = 40;
+const rectAmount = 13;
+const rect_length = 80;
+const rect_width = 30;
+const wordLocationX = 662;
+const wordLocationY = 31;
+
 const READY = 0;
 const UP = 1;
 const DOWN = 2;
 const STOP = 3;
 const NEXT = 4;
 const BEST = 165;
-const MIN = 326;
+const MIN = 320;
 const MAX = 331;
 
-
-
+var canvas;
+var ctx;
+var move = 0; 
+var state = 0;
+var timer;
+var timer_delta = 0.1;
+var trangle_delta = 1;
 var firstTrangle = 0;
 var secondTrangle = 0;
 
 
 window.onload = function() {
     init();
-    
 }
 
 function init() {
@@ -46,7 +44,6 @@ function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   drawRectBar();
-
 
   switch(state){
   	case READY:
@@ -74,9 +71,6 @@ function draw() {
 
   	break;
   }
-
-  
-
 
   drawText('Caution', wordLocationX, wordLocationY + rect_width, 15, 'Comic Sans MS', "white");
   drawText('Caution', wordLocationX, wordLocationY + rect_width * 13 , 15,'Comic Sans MS', "white");
@@ -132,36 +126,36 @@ function getMove(){
 }
 
 function mouseDownHandler(event){
-
 	switch(state){
-  	case READY:
-  		state = UP;
-    	timer = setInterval(controlTrangleUp, timer_delta);
-  	break;
-  	case UP:
-  		state = DOWN;
-    	firstTrangle = move;
-    	clearInterval(timer);
-    	timer = setInterval(controlTrangleDown, timer_delta);
-  	break;
-  	case DOWN:
-  		clearInterval(timer);
-		secondTrangle = move;
-		state = STOP;
-		draw();
-  	break;
-  	case STOP:
-		setMove(0);
-		draw();
-		state = READY;
-  	break;
-  	case NEXT:
-  	
-  	break;
-  	default:
+	  	case READY:
+	  		state = UP;
+	    	timer = setInterval(controlTrangleUp, timer_delta);
+	  	break;
+	  	case UP:
+	  		state = DOWN;
+	    	firstTrangle = move;
+	    	clearInterval(timer);
+	    	timer = setInterval(controlTrangleDown, timer_delta);
+	  	break;
+	  	case DOWN:
+	  		clearInterval(timer);
+			secondTrangle = move;
+			state = STOP;
+			draw();
+	  	break;
+	  	case STOP:
+	  		state = READY;
+			setMove(0);
+			draw();
+	  	break;
+	  	case NEXT:
+	  		
+	  	break;
+	  	default:
 
-  	break;
-  }
+	  	break;
+  	}
+  	
 }
 
 function controlTrangleUp(){
