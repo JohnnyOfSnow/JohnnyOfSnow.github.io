@@ -141,20 +141,130 @@
  			border-radius: 3px;
  			transform: translateY(4px);
 		}
+
+		/* The Modal (background) */
+		.modal {
+		  display: none; /* Hidden by default */
+		  position: fixed; /* Stay in place */
+		  z-index: 1; /* Sit on top */
+		  left: 0;
+		  top: 0;
+		  width: 100%; /* Full width */
+		  height: 100%; /* Full height */
+		  overflow: auto; /* Enable scroll if needed */
+		  background-color: rgb(0,0,0); /* Fallback color */
+		  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+		  -webkit-animation-name: fadeIn; /* Fade in the background */
+		  -webkit-animation-duration: 0.4s;
+		  animation-name: fadeIn;
+		  animation-duration: 0.4s
+		}
+
+		/* Modal Content */
+		.modal-content {
+		  position: fixed;
+		  top: 0;
+		  bottom: 0;
+		  left: 0;
+		  right: 0;
+		  margin: auto;
+		  background-color: #DECEC7;
+		  height: 50%;
+		  width: 70%;
+		  -webkit-animation-name: slideIn;
+		  -webkit-animation-duration: 0.4s;
+		  animation-name: slideIn;
+		  animation-duration: 0.4s
+		}
+
+		/* The Close Button */
+		.close {
+		  color: #000;
+		  float: right;
+		  font-size: 28px;
+		  font-weight: bold;
+		}
+
+		.close:hover,
+		.close:focus {
+		  color: #000;
+		  text-decoration: none;
+		  cursor: pointer;
+		}
+
+		.modal-header {
+		  padding: 10px 16px;
+		  color: black;
+		  font-size: 20px;
+		}
+
+		.modal-body {padding: 10px 16px;}
+
+		.modal-footer {
+		  padding: 5px 16px;
+		 
+		}
+
+		/* Add Animation */
+		@-webkit-keyframes slideIn {
+		  from {top: -300px; opacity: 0} 
+		  to {top: 0; opacity: 1}
+		}
+
+		@keyframes slideIn {
+		  from {top: -300px; opacity: 0}
+		  to {top: 0; opacity: 1}
+		}
+
+		@-webkit-keyframes fadeIn {
+		  from {opacity: 0} 
+		  to {opacity: 1}
+		}
+
+		@keyframes fadeIn {
+		  from {opacity: 0} 
+		  to {opacity: 1}
+		}
     </style>
 </head>
 <body>
 	<nav class="navbar navbar-light">
   		<a class="navbar-brand" href="#" id="title_name"></a>
-  		<div class="lang-select">
-  			<label for="langs" id="lang_label">選擇語言</label>
-			<select id="langs" onchange="change_language()">
-			  <option value="L_taiwan">繁體中文</option>
-			  <option value="L_china">簡體中文</option>
-			  <option value="L_english">English</option>
-			  <option value="L_japanese">日本語</option>
-			</select>
-  		</div>
+  		<!-- Trigger/Open The Modal -->
+		<button id="myBtn">設定</button>
+
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
+
+		  <!-- Modal content -->
+		  <div class="modal-content">
+		    <div class="modal-header">
+			  <span>設定介面</span>
+		      <span class="close">&times;</span>
+		    </div>
+		    <div class="modal-body">
+		      <div class="lang-select">
+	  			<label for="langs" id="lang_label">語言</label>
+				<select id="langs" onchange="change_language()">
+				  <option value="L_taiwan">繁體中文</option>
+				  <option value="L_china">簡體中文</option>
+				  <option value="L_english">English</option>
+				  <option value="L_japanese">日本語</option>
+				</select>
+  			  </div>
+  			  <div class="speed-select">
+	  			<label for="speed" id="speed_label">猜拳速度</label>
+				<button id="SPEED_NORMAL" onclick="setSpeed(this.id)" type="button">普通</button>
+				<button id="SPEED_FAST" onclick="setSpeed(this.id)" type="button">快速</button>
+  			  </div>
+		    </div>
+		    <div class="modal-footer">
+		     
+		    </div>
+		  </div>
+
+		</div>
+  		
 	</nav>
 	<div class="container  col-12 col-md-12 col-lg-12 col-xl-12">
 
@@ -223,6 +333,9 @@
     var rock = document.getElementById("user-rock");
     var paper = document.getElementById("user-paper");
 
+    var normal_speed_btn = document.getElementById("SPEED_NORMAL");
+	var fast_speed_btn = document.getElementById("SPEED_FAST");
+
     var myTimer;
     var userTime;
     var timeMax = 0;
@@ -231,12 +344,11 @@
     var player = -1; // player no choice
     var userRecord = "";
     var player_stage = 0;
-    var speed = 1;
+    var speed = 0;
 
     var myLangArray;
     var SRP = ["","",""]; // S = scissors, R = rock, P = paper
     var WINLOSE = ["", "", "", "", "", "", "", "", ""];
-
     var tsunoVideo = ["./movie/18.mp4","./movie/10.mp4", "./movie/19.mp4", "./movie/11.mp4", "./movie/20.mp4", "./movie/12.mp4"];
 
     
@@ -244,11 +356,14 @@
 	window.onload = function (){
 		change_language();
 		volumeOutput.innerText = 20;
+		timeMax = 13.5;
+		speed = 0;
 		vid.volume = parseInt(volumeSlider.value) / 100;
 		userLock();
 		document.getElementById("startBtn").disabled = false;
 	}
 
+	// Provide many languages for user.
 	function change_language(){
 		var user_lang = document.getElementById("langs").value;
 		switch(user_lang){
@@ -291,6 +406,7 @@
 		stage();
 	}
 
+	/* Should change the language of text when user change language. */
 	function stage(){
 		switch(player_stage){
 			case 0:
@@ -321,14 +437,15 @@
 	
 	// Play tsunomaki's video
 	function playVid() {
+		startButtonEnabled();
 		player = -1;
 		player_stage = 1;
 		document.getElementById("instruction").innerText = myLangArray[7];
 		timerReset();
 		tsunoChoice();
+		userTime = timeMax;
 		vid.play();
 		userOpen();
-		startButtonEnabled();
 	}
 
 	// Stop playing tsunomaki's video
@@ -350,25 +467,29 @@
 
 	// Control the time countdown
 	function timeLess(){
-		//const TIMEMAX = userTime;  
 		if(userTime < 0){
+			userTime = 0;
 			clearInterval(myTimer);
 			record();
 			userLock();
 		}else{
-			timeColor(userTime);
 			userTime = userTime - 0.1;
-			currentWidth = (userTime / timeMax) * TIMEWIDTH_INT;
-			console.log(currentWidth);
-			timeBar.style.width = currentWidth.toString() + "px";
 		}
-		
+		drawTimeBar();
 	}
 
+	// When time decrease, time bar must be red color.
 	function timeColor(){
 		timeBar.style.backgroundColor = "#f00";
 	}
 
+	function drawTimeBar(){
+		timeColor();
+		currentWidth = (userTime / timeMax) * TIMEWIDTH_INT;
+		timeBar.style.width = currentWidth.toString() + "px";
+	}
+
+	// Time bar is green when the game don't start.
 	function timerReset(){
 	    timeBar.style.width = TIMEWIDTH;
 	    timeBar.style.backgroundColor = "#0f0";
@@ -376,29 +497,64 @@
 	}
 
 	function tsunoChoice(){
-		tsuno = Math.floor(Math.random() * 3); // random number from 0 to 2
-		speed = Math.floor(Math.random() * 2); // random number from 0 to 1
-		vid.setAttribute("src", tsunoVideo[tsuno*2 + speed]);
-		setSpeed(speed);
+		vid.setAttribute("src", tsunoVideo[tsuno_algorithm()*2 + speed]);
+	}
+
+	function tsuno_algorithm(){
+		var oldTsuno = tsuno;
+		var repeated = 0;
+		var repeated_judge = 0;
+		while(oldTsuno == tsuno){
+			tsuno = Math.floor(Math.random() * 3); // random number from 0 to 2
+			repeated = Math.floor(Math.random() * 101);
+			repeated_judge = Math.floor(Math.random() * 101);
+			if(repeated > repeated_judge){
+				break;
+			}
+		}
+
+		console.log("oldTsuno: " + oldTsuno);
+		console.log("tsuno: " + tsuno);
+		console.log("--------------------------");
+		console.log("tsuno repeated: " + repeated);
+		console.log("tsuno repeated_judge: " + repeated_judge);
+		console.log("--------------------------");
+
+		return tsuno;
 	}
 
 
-	function setSpeed(speed){
-		switch(speed){
-			case SPEED_NORMAL:
+	function setSpeed(clicked_id){
+		console.log("call setSpeed function");
+		clearSpeed();
+		console.log(clicked_id);
+		switch(clicked_id){
+			case "SPEED_NORMAL":
 				timeMax = 13.5;
+				speed = 0;
+				console.log("normal speed");
+				normal_speed_btn.style.backgroundColor = "#f00";
 			break;
 
-			case SPEED_FAST:
-				timeMax = 6.7;
+			case "SPEED_FAST":
+				timeMax = 6.71;
+				speed = 1;
+				console.log("fast speed");
+				fast_speed_btn.style.backgroundColor = "#f00";
 			break;
 			default:
 
 			break;
 		}
+
+		console.log(speed);
 		userTime = timeMax;
 	}
 
+	function clearSpeed(){
+		normal_speed_btn.style.backgroundColor = "#fff";
+		fast_speed_btn.style.backgroundColor = "#fff";
+	}
 
 
 	function userChoice(clicked_id){
@@ -421,11 +577,13 @@
 
 	function startButtonEnabled(){
 		document.getElementById("startBtn").disabled = true;
+		document.getElementById("myBtn").disabled = true;
 	}
 
 	function startButtonAble(){
 		document.getElementById("startBtn").disabled = false;
 		document.getElementById("user").innerText  = "";
+
 		clearUserChoice();
 	}
 
@@ -455,10 +613,39 @@
 			userRecord = WINLOSE[player*3 + tsuno] + "\n" + myLangArray[14] + SRP[player] + "\n" +myLangArray[15] + SRP[tsuno];
 		}
 		document.getElementById("instruction").innerText = userRecord;
+		document.getElementById("myBtn").disabled = false;
 	}
 
 	function clearRecord(){
 		userRecord = userRecord + "\n";
 		document.getElementById("instruction").innerText = myLangArray[2]; 
 	}
+
+	// Get the modal
+	var modal = document.getElementById("myModal");
+
+	// Get the button that opens the modal
+	var btn = document.getElementById("myBtn");
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks the button, open the modal 
+	btn.onclick = function() {
+	  modal.style.display = "block";
+	}
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+	  modal.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	  if (event.target == modal) {
+	    modal.style.display = "none";
+	  }
+	}
+</script>
+
 </script>
