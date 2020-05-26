@@ -12,6 +12,7 @@
     <script src="./languageData.js" type="text/javascript"></script>
 
     <style type="text/css">
+    	@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css");
     	*{
     		padding: 0;
     		margin: 0;
@@ -31,6 +32,19 @@
     	.navbar-light{
     		background-color: #FFFFFF;
     		margin-bottom: 30px;
+    	}
+
+    	#myBtn{
+    		width: 35px;
+    		height: 35px;
+    		font-size: 23px;
+    		border: none;
+    		background-color: #fff;
+    		text-align: center;
+    	}
+
+    	#myBtn:active,#myBtn:focus{
+    		outline: none;
     	}
 
     	.container{
@@ -231,7 +245,7 @@
 	<nav class="navbar navbar-light">
   		<a class="navbar-brand" href="#" id="title_name"></a>
   		<!-- Trigger/Open The Modal -->
-		<button id="myBtn">設定</button>
+		<button id="myBtn"><i class="fa fa-cogs" aria-hidden="true"></i></button>
 
 		<!-- The Modal -->
 		<div id="myModal" class="modal">
@@ -384,6 +398,11 @@
 			break;
 		}
 
+		change_language_text();
+		stage();
+	}
+
+	function change_language_text(){
 		document.getElementById("title_name").innerText = myLangArray[0];
 		document.getElementById("lang_label").innerText = myLangArray[17];
 		document.getElementById("volume-hint").innerText = myLangArray[1];
@@ -403,7 +422,6 @@
 		WINLOSE[6] = myLangArray[11];
 		WINLOSE[7] = myLangArray[12];
 		WINLOSE[8] = myLangArray[13];
-		stage();
 	}
 
 	/* Should change the language of text when user change language. */
@@ -451,6 +469,7 @@
 	// Stop playing tsunomaki's video
 	function stopVid() {
 		 vid.pause();
+		 document.getElementById("myBtn").disabled = false;
 		 vid.currentTime = 0; // equal to stop video playing
 		 player_stage = 0;
 		 timerReset();
@@ -513,41 +532,36 @@
 			}
 		}
 
+		/**
 		console.log("oldTsuno: " + oldTsuno);
 		console.log("tsuno: " + tsuno);
 		console.log("--------------------------");
 		console.log("tsuno repeated: " + repeated);
 		console.log("tsuno repeated_judge: " + repeated_judge);
 		console.log("--------------------------");
-
+		*/
 		return tsuno;
 	}
 
 
 	function setSpeed(clicked_id){
-		console.log("call setSpeed function");
 		clearSpeed();
 		console.log(clicked_id);
 		switch(clicked_id){
 			case "SPEED_NORMAL":
 				timeMax = 13.5;
 				speed = 0;
-				console.log("normal speed");
 				normal_speed_btn.style.backgroundColor = "#f00";
 			break;
-
 			case "SPEED_FAST":
 				timeMax = 6.71;
 				speed = 1;
-				console.log("fast speed");
 				fast_speed_btn.style.backgroundColor = "#f00";
 			break;
 			default:
 
 			break;
 		}
-
-		console.log(speed);
 		userTime = timeMax;
 	}
 
@@ -555,7 +569,6 @@
 		normal_speed_btn.style.backgroundColor = "#fff";
 		fast_speed_btn.style.backgroundColor = "#fff";
 	}
-
 
 	function userChoice(clicked_id){
 		clearUserChoice();
@@ -620,6 +633,7 @@
 		userRecord = userRecord + "\n";
 		document.getElementById("instruction").innerText = myLangArray[2]; 
 	}
+
 
 	// Get the modal
 	var modal = document.getElementById("myModal");
